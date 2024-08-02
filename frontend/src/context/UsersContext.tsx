@@ -5,7 +5,6 @@ type User = {
   firstName: string;
   lastName: string;
   email: string;
-  password: string;
 };
 type UsersState = {
   users: User[] | null;
@@ -30,6 +29,8 @@ const usersReducer = (state: UsersState, action: UsersAction) => {
         ...state,
         users: action.payload,
       };
+    case "CREATE_USER":
+      return { user: action.payload, ...state };
     default:
       return state;
   }

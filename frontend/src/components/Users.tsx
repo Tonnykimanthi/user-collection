@@ -22,7 +22,6 @@ const Users = () => {
             <th>FirstName</th>
             <th>LastName</th>
             <th>Email address</th>
-            <th>Password</th>
             <th>created At</th>
           </tr>
         </thead>
@@ -35,7 +34,6 @@ const Users = () => {
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
-              <td>{user.password}</td>
               <td>20 mins ago</td>
             </tr>
           ))}
