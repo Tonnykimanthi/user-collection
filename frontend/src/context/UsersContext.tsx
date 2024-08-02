@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useReducer } from "react";
+import React, { createContext, ReactNode, useReducer, useState } from "react";
 
 type User = {
   id: string;
@@ -18,6 +18,8 @@ export const UsersContext = createContext<
   | {
       state: UsersState;
       dispatch: React.Dispatch<UsersAction>;
+      formIsActive: boolean;
+      setFormIsActive: React.Dispatch<React.SetStateAction<boolean>>;
     }
   | undefined
 >(undefined);
@@ -38,8 +40,9 @@ const usersReducer = (state: UsersState, action: UsersAction) => {
 
 const UsersContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(usersReducer, { users: null });
+  const [formIsActive, setFormIsActive] = useState(true);
   return (
-    <UsersContext.Provider value={{ state, dispatch }}>
+    <UsersContext.Provider value={{ state, dispatch,formIsActive, setFormIsActive }}>
       {children}
     </UsersContext.Provider>
   );

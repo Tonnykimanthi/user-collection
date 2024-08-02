@@ -1,4 +1,7 @@
+import useUsersContext from "../hooks/useUsersContext";
+
 const Navbar = () => {
+  const { setFormIsActive } = useUsersContext();
   return (
     <header className="flex items-center bg-primary-default p-2 text-white">
       <nav className="flex items-center justify-center">
@@ -6,7 +9,12 @@ const Navbar = () => {
           <li>Home</li>
         </ul>
       </nav>
-      <button className="ml-auto rounded bg-secondary px-4 py-1 text-black transition hover:bg-secondary/90">
+      <button
+        className="ml-auto rounded bg-secondary px-4 py-1 text-black transition hover:bg-secondary/90"
+        onClick={() => {
+          setFormIsActive((isActive) => !isActive);
+        }}
+      >
         Create new user
       </button>
     </header>
