@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useReducer } from "react";
 
 type User = {
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -11,7 +12,7 @@ type UsersState = {
 };
 type UsersAction = {
   type: string;
-  payload: string;
+  payload: User[];
 };
 
 export const UsersContext = createContext<
@@ -24,18 +25,18 @@ export const UsersContext = createContext<
 
 const usersReducer = (state: UsersState, action: UsersAction) => {
   switch (action.type) {
-    case "GET_USERS": {
-      users: action.payload;
-    }
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
     default:
       return state;
   }
 };
 
 const UsersContextProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(usersReducer, {
-    users: null,
-  });
+  const [state, dispatch] = useReducer(usersReducer, { users: null });
   return (
     <UsersContext.Provider value={{ state, dispatch }}>
       {children}
