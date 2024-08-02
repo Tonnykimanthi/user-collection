@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useReducer, useState } from "react";
 
 type User = {
-  id: string;
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -21,6 +21,8 @@ export const UsersContext = createContext<
       dispatch: React.Dispatch<UsersAction>;
       formIsActive: boolean;
       setFormIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+      activeUser: number | null;
+      setActiveUser: React.Dispatch<React.SetStateAction<number | null>>;
     }
   | undefined
 >(undefined);
@@ -42,9 +44,17 @@ const usersReducer = (state: UsersState, action: UsersAction) => {
 const UsersContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(usersReducer, { users: [] });
   const [formIsActive, setFormIsActive] = useState(false);
+  const [activeUser, setActiveUser] = useState<number | null>(null);
   return (
     <UsersContext.Provider
-      value={{ state, dispatch, formIsActive, setFormIsActive }}
+      value={{
+        state,
+        dispatch,
+        formIsActive,
+        setFormIsActive,
+        activeUser,
+        setActiveUser,
+      }}
     >
       {children}
     </UsersContext.Provider>

@@ -24,6 +24,9 @@ const CreateUserForm = () => {
       if (resp.ok) {
         const json = await resp.json();
         dispatch({ type: "CREATE_USER", payload: json });
+        setFirstName('');
+        setLastName('');
+        setEmail('');
       }
     } catch (error) {
       console.log(error);
@@ -38,7 +41,7 @@ const CreateUserForm = () => {
         handleCreateUser();
       }}
     >
-      <label>FirstName:</label> <br />
+      <label>First name:</label> <br />
       <input
         type="text"
         value={firstName}
@@ -46,7 +49,7 @@ const CreateUserForm = () => {
           setFirstName(e.target.value);
         }}
       />
-      <label className="mt-4 block">LastName:</label>
+      <label className="mt-4 block">Last name:</label>
       <input
         type="text"
         value={lastName}
@@ -62,7 +65,7 @@ const CreateUserForm = () => {
           setEmail(e.target.value);
         }}
       />
-      <button className="mx-auto mt-5 w-full bg-primary-default py-2 text-white transition hover:bg-primary-dark">
+      <button className="mt-5 w-full bg-primary-default py-2 text-white transition hover:bg-primary-dark">
         Create
       </button>
     </form>
