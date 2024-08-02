@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import useUsersContext from "../hooks/useUsersContext";
+import { formatDistanceToNow } from "date-fns";
 
 const Users = () => {
   const { state, dispatch } = useUsersContext();
@@ -12,7 +13,7 @@ const Users = () => {
       dispatch({ type: "GET_USERS", payload: json });
     };
     fetchUsers();
-  }, []);
+  }, [dispatch]);
 
   return (
     <main>
@@ -26,15 +27,15 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          {state.users?.map((user) => (
+          {state.users?.map((user, index) => (
             <tr
-              key={user.id}
+              key={index}
               className="odd:bg-white even:bg-secondary [&>td]:border [&>td]:border-slate-700 [&>td]:py-2"
             >
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
-              <td>20 mins ago</td>
+              <td>{formatDistanceToNow(new Date(user.createdAt), {addSuffix: true})}</td>
             </tr>
           ))}
         </tbody>

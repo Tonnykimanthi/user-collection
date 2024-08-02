@@ -5,13 +5,14 @@ type User = {
   firstName: string;
   lastName: string;
   email: string;
+  createdAt: string;
 };
 type UsersState = {
-  users: User[] | null;
+  users: User[];
 };
 type UsersAction = {
   type: string;
-  payload: User[];
+  payload: User[] | User;
 };
 
 export const UsersContext = createContext<
@@ -29,20 +30,22 @@ const usersReducer = (state: UsersState, action: UsersAction) => {
     case "GET_USERS":
       return {
         ...state,
-        users: action.payload,
+        users: action.payload as User[],
       };
     case "CREATE_USER":
-      return { user: action.payload, ...state };
+      return { users: [action.payload as User, ...state.users] };
     default:
       return state;
   }
 };
 
 const UsersContextProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(usersReducer, { users: null });
-  const [formIsActive, setFormIsActive] = useState(true);
+  const [state, dispatch] = useReducer(usersReducer, { users: [] });
+  const [formIsActive, setFormIsActive] = useState(false);
   return (
-    <UsersContext.Provider value={{ state, dispatch,formIsActive, setFormIsActive }}>
+    <UsersContext.Provider
+      value={{ state, dispatch, formIsActive, setFormIsActive }}
+    >
       {children}
     </UsersContext.Provider>
   );

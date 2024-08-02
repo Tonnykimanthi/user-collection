@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useUsersContext from "../hooks/useUsersContext";
 
 const CreateUserForm = () => {
-  const { formIsActive } = useUsersContext();
+  const { formIsActive, dispatch } = useUsersContext();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    const handleCreateUser = async () => {
-      const resp = await fetch("localhost:4000/", {
+  const handleCreateUser = async () => {
+    try {
+      const resp = await fetch("http://localhost:4000/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -20,12 +20,23 @@ const CreateUserForm = () => {
           email,
         }),
       });
-    };
-  });
+
+      if (resp.ok) {
+        const json = await resp.json();
+        dispatch({ type: "CREATE_USER", payload: json });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <form
       className={`absolute left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white px-5 py-8 text-lg [&>input]:w-full [&>input]:border [&>input]:p-1.5 [&>input]:outline-none [&>label]:font-medium ${formIsActive ? "-translate-y-1/2" : "-translate-y-[200%]"} transition`}
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        handleCreateUser();
+      }}
     >
       <label>FirstName:</label> <br />
       <input
