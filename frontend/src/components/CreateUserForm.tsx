@@ -2,10 +2,16 @@ import { useState } from "react";
 import useUsersContext from "../hooks/useUsersContext";
 
 const CreateUserForm = () => {
-  const { formIsActive, dispatch } = useUsersContext();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const {
+    formIsActive,
+    dispatch,
+    firstName,
+    lastName,
+    email,
+    setFirstName,
+    setLastName,
+    setEmail,
+  } = useUsersContext();
 
   const handleCreateUser = async () => {
     try {
@@ -24,9 +30,9 @@ const CreateUserForm = () => {
       if (resp.ok) {
         const json = await resp.json();
         dispatch({ type: "CREATE_USER", payload: json });
-        setFirstName('');
-        setLastName('');
-        setEmail('');
+        setFirstName("");
+        setLastName("");
+        setEmail("");
       }
     } catch (error) {
       console.log(error);
