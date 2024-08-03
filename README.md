@@ -1,12 +1,14 @@
 # **Introduction**
 ## Getting Started
 ### Backend
+```
+cd backend
+npm install
+npm run dev
 
-- `cd backend`
-- `npm install`
-- `npm run dev`
+```
 
 ### Frontend
-- `cd fronend`
+- `cd frontend`
 - `npm install`
 - `npm run dev`
