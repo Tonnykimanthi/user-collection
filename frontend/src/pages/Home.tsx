@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import useUsersContext from "../hooks/useUsersContext";
 import { formatDistanceToNow } from "date-fns";
+import MobileUserList from "../components/MobileUserList";
 
 const Users = () => {
   const { state, dispatch, setActiveUser, setUserModalIsOpen } =
@@ -23,7 +24,7 @@ const Users = () => {
 
   return (
     <main>
-      <table className="mt-10 w-full text-center">
+      <table className="mt-10 w-full text-center max-sm:hidden">
         <thead>
           <tr className="bg-slate-700 text-white [&>th]:py-3">
             <th>FirstName</th>
@@ -53,6 +54,10 @@ const Users = () => {
           ))}
         </tbody>
       </table>
+      <MobileUserList
+        users={state.users}
+        handleClickedUser={handleClickedUser}
+      />
     </main>
   );
 };
