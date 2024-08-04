@@ -1,9 +1,9 @@
-import { useState } from "react";
 import useUsersContext from "../hooks/useUsersContext";
 
 const CreateUserForm = () => {
   const {
     formIsActive,
+    setFormIsActive,
     dispatch,
     firstName,
     lastName,
@@ -33,6 +33,7 @@ const CreateUserForm = () => {
         setFirstName("");
         setLastName("");
         setEmail("");
+        setFormIsActive(false);
       }
     } catch (error) {
       console.log(error);
