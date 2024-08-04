@@ -32,7 +32,7 @@ const Navbar = () => {
             Contact
           </NavLink>
           <NavLink
-            to={"portfolio"}
+            to={"https://portfolio-fawn-six-94.vercel.app/"}
             className={({ isActive }) =>
               isActive ? "underline underline-offset-4" : ""
             }

@@ -3,7 +3,8 @@ import useUsersContext from "../hooks/useUsersContext";
 import { formatDistanceToNow } from "date-fns";
 
 const Users = () => {
-  const { state, dispatch, setActiveUser, setUserModalIsOpen } = useUsersContext();
+  const { state, dispatch, setActiveUser, setUserModalIsOpen } =
+    useUsersContext();
 
   useEffect(() => {
     const fetchUsers = async () => {

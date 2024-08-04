@@ -35,6 +35,7 @@ const UserModal = () => {
     setActiveUser(null);
   };
 
+
   const handleUpdateUser = async () => {
     const updatedUser = {
       ...state.users[activeUser],
@@ -106,9 +107,9 @@ const UserModal = () => {
           setEmail(e.target.value);
         }}
       />
-      <section className="flex mt-5 font-medium justify-evenly">
+      <section className="mt-5 flex justify-evenly font-medium">
         <button
-          className="px-8 bg-primary-light hover:bg-primary-default py-2 transition text-white rounded"
+          className="rounded bg-primary-light px-8 py-2 text-white transition hover:bg-primary-default"
           onClick={(e) => {
             e.preventDefault();
             handleUpdateUser();
@@ -118,10 +119,10 @@ const UserModal = () => {
           Update User
         </button>
         <button
-          className="px-8 py-2 text-white transition bg-slate-700 rounded"
+          className="rounded bg-slate-700 px-8 py-2 text-white transition"
           onClick={(e) => {
             e.preventDefault();
-            setDeleteModalIsOpen(true)
+            setDeleteModalIsOpen(true);
           }}
         >
           Delete User
