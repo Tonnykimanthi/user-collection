@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
 
-// DOES NOT WORK AT THE MOMENT
 type MobileNavbarProps = {
   mobileNavbarIsActive: boolean;
   setMobileNavbarIsActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,7 +12,7 @@ const MobileNavbar = ({
 }: MobileNavbarProps) => {
   return (
     <nav
-      className={`absolute bottom-0 left-0 top-0 flex w-0 items-center justify-center transition-all bg-primary-dark ${mobileNavbarIsActive ? "w-full" : "w-0"}`}
+      className={`absolute bottom-0 left-0 top-0 flex w-0 items-center justify-center bg-primary-dark transition-all ${mobileNavbarIsActive ? "w-full" : "w-0"}`}
     >
       <button
         className="absolute right-5 top-5"
