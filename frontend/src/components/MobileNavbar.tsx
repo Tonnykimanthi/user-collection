@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
+import { useRef } from "react";
 
 type MobileNavbarProps = {
   mobileNavbarIsActive: boolean;
@@ -10,6 +11,10 @@ const MobileNavbar = ({
   mobileNavbarIsActive,
   setMobileNavbarIsActive,
 }: MobileNavbarProps) => {
+  const handleClickNavLinks = () => {
+    setMobileNavbarIsActive(false);
+  };
+
   return (
     <nav
       className={`absolute bottom-0 left-0 top-0 flex w-0 items-center justify-center bg-primary-dark transition-all ${mobileNavbarIsActive ? "w-full" : "w-0"}`}
@@ -26,6 +31,7 @@ const MobileNavbar = ({
           className={({ isActive }) =>
             isActive ? "underline underline-offset-4" : ""
           }
+          onClick={handleClickNavLinks}
         >
           Home
         </NavLink>
@@ -34,6 +40,7 @@ const MobileNavbar = ({
           className={({ isActive }) =>
             isActive ? "underline underline-offset-4" : ""
           }
+          onClick={handleClickNavLinks}
         >
           About
         </NavLink>
@@ -42,6 +49,7 @@ const MobileNavbar = ({
           className={({ isActive }) =>
             isActive ? "underline underline-offset-4" : ""
           }
+          onClick={handleClickNavLinks}
         >
           Contact
         </NavLink>
@@ -50,6 +58,7 @@ const MobileNavbar = ({
           className={({ isActive }) =>
             isActive ? "underline underline-offset-4" : ""
           }
+          onClick={handleClickNavLinks}
         >
           Portfolio
         </NavLink>

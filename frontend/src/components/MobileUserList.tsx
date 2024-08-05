@@ -6,8 +6,9 @@ type HomeForSmallScreen = {
 };
 
 const MobileUserList = ({ users, handleClickedUser }: HomeForSmallScreen) => {
+
   return (
-    <div className="mt-10 flex flex-col items-center gap-y-5 sm:hidden">
+    <div className="mt-10 flex flex-col items-center gap-y-5 sm:hidden w-full">
       {users.map((user, index) => (
         <div
           key={user._id}
