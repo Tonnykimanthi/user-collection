@@ -19,7 +19,6 @@ const Users = () => {
         }
         if (resp.ok) {
           const json = await resp.json();
-          console.log(state);
           dispatch({ type: "GET_USERS", payload: json });
           setIsLoading(false);
           setError(false);
@@ -27,7 +26,6 @@ const Users = () => {
       };
       fetchUsers();
     } catch (error) {
-      console.log(error);
       setError(true);
       setIsLoading(false);
     }
