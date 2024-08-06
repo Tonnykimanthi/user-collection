@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { IoCloseOutline } from "react-icons/io5";
-import { useRef } from "react";
 
 type MobileNavbarProps = {
   mobileNavbarIsActive: boolean;
@@ -17,7 +16,7 @@ const MobileNavbar = ({
 
   return (
     <nav
-      className={`absolute bottom-0 left-0 top-0 flex w-0 items-center justify-center bg-primary-dark transition-all ${mobileNavbarIsActive ? "w-full" : "w-0"}`}
+      className={`absolute bottom-0 left-0 top-0 flex w-0 items-center justify-center bg-primary-dark opacity-0 transition-all ${mobileNavbarIsActive ? "w-full opacity-100" : "w-0 opacity-0"}`}
     >
       <button
         className="absolute right-5 top-5"

@@ -6,13 +6,12 @@ type HomeForSmallScreen = {
 };
 
 const MobileUserList = ({ users, handleClickedUser }: HomeForSmallScreen) => {
-
   return (
-    <div className="mt-10 flex flex-col items-center gap-y-5 sm:hidden w-full">
+    <div className="mt-10 flex w-full flex-col items-center gap-y-5 sm:hidden">
       {users.map((user, index) => (
         <div
           key={user._id}
-          className="w-11/12 cursor-pointer space-y-2 rounded-lg bg-secondary p-5 text-xl"
+          className="w-11/12 cursor-pointer space-y-2 rounded-lg bg-secondary p-5 text-xl shadow-md"
           onClick={() => {
             handleClickedUser(index);
           }}

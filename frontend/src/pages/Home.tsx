@@ -39,7 +39,9 @@ const Users = () => {
   return (
     <main className="grid place-items-center">
       {isLoading && <span className="loader mt-10"></span>}
-      {error && <div className="text-black">An Error has occured</div>}
+      {error && !isLoading && (
+        <div className="mt-10 text-black">An Error has occured</div>
+      )}
       {!error && !isLoading && (
         <>
           <table className="mt-10 w-full text-center max-sm:hidden">
