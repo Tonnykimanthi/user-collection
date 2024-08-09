@@ -59,7 +59,7 @@ const CreateUserForm = () => {
 
   return (
     <div
-      className={`absolute bottom-0 left-0 right-0 top-0 bg-black/50 transition ${formIsActive ? "" : "scale-0"}`}
+      className={`absolute bottom-0 left-0 right-0 top-0 bg-black/50 transition duration-75 ${formIsActive ? "" : "scale-0"}`}
     >
       <form
         ref={formElRef}

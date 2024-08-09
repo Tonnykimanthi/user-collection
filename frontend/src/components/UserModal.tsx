@@ -21,7 +21,6 @@ const UserModal = () => {
   useEffect(() => {
     if (activeUser !== null) {
       const user = state.users[activeUser];
-      // const body = document.querySelector("body");
       if (user) {
         setFirstName(user.firstName);
         setLastName(user.lastName);
