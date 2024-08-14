@@ -1,15 +1,18 @@
 import { NavLink, useLocation } from "react-router-dom";
-import useUsersContext from "../hooks/useUsersContext";
-import MobileNavbar from "./MobileNavbar";
 import { useState } from "react";
+import useUsersContext from "../hooks/useUsersContext";
+// Components
+import MobileNavbar from "./MobileNavbar";
+// Icons
 import { RiMenu2Fill } from "react-icons/ri";
+import { GoPlus } from "react-icons/go";
 
 const Navbar = () => {
   const { setFormIsActive } = useUsersContext();
   const [mobileNavbarIsActive, setMobileNavbarIsActive] = useState(false);
   const location = useLocation();
   return (
-    <header className="flex items-center bg-primary-default p-2 text-white">
+    <header className="flex items-center bg-primary-default/10 p-4 text-white">
       <button
         onClick={() => setMobileNavbarIsActive(true)}
         className="sm:hidden"
@@ -54,12 +57,13 @@ const Navbar = () => {
       </nav>
       {location.pathname === "/" && (
         <button
-          className="ml-auto w-52 rounded bg-secondary px-4 py-1 text-black transition hover:bg-secondary/90 max-sm:w-40"
+          className="ml-auto flex w-52 items-center justify-center gap-x-2 rounded bg-primary-default px-4 py-1.5 text-white transition hover:bg-primary-dark max-sm:w-40"
           onClick={() => {
             setFormIsActive((isActive) => !isActive);
           }}
         >
-          Create new user
+          <GoPlus className="size-6" />
+          <span>Add new user</span>
         </button>
       )}
 
