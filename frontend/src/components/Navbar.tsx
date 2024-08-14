@@ -57,13 +57,13 @@ const Navbar = () => {
       </nav>
       {location.pathname === "/" && (
         <button
-          className="ml-auto flex w-52 items-center justify-center gap-x-2 rounded bg-primary-default px-4 py-1.5 text-white transition hover:bg-primary-dark max-sm:w-40"
+          className="ml-auto flex w-52 items-center justify-center gap-x-2 rounded bg-primary-default px-4 py-1.5 text-white transition hover:bg-primary-dark max-sm:w-fit max-sm:px-2.5 max-sm:py-2.5"
           onClick={() => {
             setFormIsActive((isActive) => !isActive);
           }}
         >
           <GoPlus className="size-6" />
-          <span>Add new user</span>
+          <span className="max-sm:hidden">Add new user</span>
         </button>
       )}
 
