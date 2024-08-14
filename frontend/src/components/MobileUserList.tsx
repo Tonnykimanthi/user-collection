@@ -11,7 +11,7 @@ const MobileUserList = ({ users, handleClickedUser }: HomeForSmallScreen) => {
       {users.map((user, index) => (
         <div
           key={user._id}
-          className="w-11/12 cursor-pointer space-y-2 rounded-lg bg-secondary p-5 text-xl shadow-md"
+          className="w-11/12 cursor-pointer space-y-2 rounded-lg bg-secondary p-5 text-xl shadow-md hover:bg-primary-default hover:text-white"
           onClick={() => {
             handleClickedUser(index);
           }}
