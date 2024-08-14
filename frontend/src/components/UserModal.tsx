@@ -17,6 +17,7 @@ const UserModal = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const formElRef = useRef<HTMLFormElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (activeUser !== null) {
@@ -50,6 +51,7 @@ const UserModal = () => {
   };
 
   const handleUpdateUser = async () => {
+    setIsLoading(true);
     const updatedUser = {
       ...state.users[activeUser],
       firstName,
@@ -77,9 +79,13 @@ const UserModal = () => {
       if (!resp.ok) {
         throw new Error("Unable to update the user");
       }
+      if (resp.ok) {
+        setIsLoading(false);
+      }
     } catch (error) {
       console.log(error);
       dispatch({ type: "UPDATE_USER", payload: state.users[activeUser] });
+      setIsLoading(false);
     }
   };
 
@@ -126,14 +132,13 @@ const UserModal = () => {
         />
         <section className="mt-5 flex justify-evenly font-medium">
           <button
-            className="rounded bg-primary-light px-8 py-2 text-white transition hover:bg-primary-default"
+            className={`rounded bg-primary-light px-8 py-2 text-white transition hover:bg-primary-default ${isLoading ? "cursor-not-allowed bg-primary-default" : ""}`}
             onClick={(e) => {
               e.preventDefault();
               handleUpdateUser();
-              handleModalIsOpen();
             }}
           >
-            Update User
+            {isLoading ? "Updating User..." : "Update User"}
           </button>
           <button
             className="rounded bg-slate-700 px-8 py-2 text-white transition"
