@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useUsersContext from "../hooks/useUsersContext";
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -15,8 +15,10 @@ const CreateUserForm = () => {
     setEmail,
   } = useUsersContext();
   const formElRef = useRef<HTMLFormElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateUser = async () => {
+    setIsLoading(true);
     try {
       const resp = await fetch("http://localhost:4000/", {
         method: "POST",
@@ -37,6 +39,7 @@ const CreateUserForm = () => {
         setLastName("");
         setEmail("");
         setFormIsActive(false);
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -102,8 +105,10 @@ const CreateUserForm = () => {
             setEmail(e.target.value);
           }}
         />
-        <button className="mt-5 w-full bg-primary-default py-2 text-white transition hover:bg-primary-dark">
-          Create
+        <button
+          className={`mt-5 w-full bg-primary-default py-2 text-white transition hover:bg-primary-dark ${isLoading ? "cursor-not-allowed bg-primary-dark" : ""}`}
+        >
+          {isLoading ? "Creating..." : "Create"}
         </button>
       </form>
     </div>
