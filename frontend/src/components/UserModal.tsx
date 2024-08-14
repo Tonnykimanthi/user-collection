@@ -42,7 +42,7 @@ const UserModal = () => {
     }
   }, [activeUser, state.users]);
 
-  if (activeUser === null) return null;
+  if (activeUser === null || !state.users[activeUser]) return null;
 
   const handleModalIsOpen = () => {
     setUserModalIsOpen(false);

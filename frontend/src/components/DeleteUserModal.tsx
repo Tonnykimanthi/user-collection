@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useUsersContext from "../hooks/useUsersContext";
 
 type User = {
@@ -9,10 +10,16 @@ type User = {
 };
 
 const DeleteUserModal = ({ id, user }: { id: string; user: User }) => {
-  const { dispatch, deleteModalIsOpen, setDeleteModalIsOpen, setUserModalIsOpen } =
-    useUsersContext();
+  const {
+    dispatch,
+    deleteModalIsOpen,
+    setDeleteModalIsOpen,
+    setUserModalIsOpen,
+  } = useUsersContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDeleteUser = async () => {
+    setIsLoading(true);
     try {
       const resp = await fetch(`http://localhost:4000/${id}`, {
         method: "DELETE",
@@ -25,6 +32,7 @@ const DeleteUserModal = ({ id, user }: { id: string; user: User }) => {
         dispatch({ type: "DELETE_USER", payload: user });
         setDeleteModalIsOpen(false);
         setUserModalIsOpen(false);
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -42,7 +50,7 @@ const DeleteUserModal = ({ id, user }: { id: string; user: User }) => {
       </p>
       <section className="flex items-center justify-evenly font-medium">
         <button
-          className="w-32 rounded border bg-slate-100 py-1 text-black"
+          className={`w-32 rounded border bg-slate-100 py-1 text-black ${isLoading ? "hidden" : ""}`}
           onClick={(e) => {
             e.preventDefault();
             setDeleteModalIsOpen(false);
@@ -51,13 +59,13 @@ const DeleteUserModal = ({ id, user }: { id: string; user: User }) => {
           Cancel
         </button>
         <button
-          className="w-32 rounded bg-red-500 py-1"
+          className={`w-32 rounded bg-red-500 py-1 ${isLoading ? "cursor-not-allowed bg-red-300" : ""}`}
           onClick={(e) => {
             e.preventDefault();
             handleDeleteUser();
           }}
         >
-          Delete
+          {isLoading ? "Deleting..." : "Delete"}
         </button>
       </section>
     </div>
