@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import useUsersContext from "../hooks/useUsersContext";
 import MobileNavbar from "./MobileNavbar";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import { RiMenu2Fill } from "react-icons/ri";
 const Navbar = () => {
   const { setFormIsActive } = useUsersContext();
   const [mobileNavbarIsActive, setMobileNavbarIsActive] = useState(false);
+  const location = useLocation();
   return (
     <header className="flex items-center bg-primary-default p-2 text-white">
       <button
@@ -51,14 +52,17 @@ const Navbar = () => {
           </NavLink>
         </ul>
       </nav>
-      <button
-        className="ml-auto w-52 rounded bg-secondary px-4 py-1 text-black transition hover:bg-secondary/90 max-sm:w-40"
-        onClick={() => {
-          setFormIsActive((isActive) => !isActive);
-        }}
-      >
-        Create new user
-      </button>
+      {location.pathname === "/" && (
+        <button
+          className="ml-auto w-52 rounded bg-secondary px-4 py-1 text-black transition hover:bg-secondary/90 max-sm:w-40"
+          onClick={() => {
+            setFormIsActive((isActive) => !isActive);
+          }}
+        >
+          Create new user
+        </button>
+      )}
+
       <MobileNavbar
         mobileNavbarIsActive={mobileNavbarIsActive}
         setMobileNavbarIsActive={setMobileNavbarIsActive}
