@@ -35,6 +35,12 @@ const Contact = () => {
           <label>Message</label>
           <textarea className="w-full rounded border border-primary-dark bg-transparent/10 p-1.5 outline-none transition duration-300 focus:border-primary-default"></textarea>
         </div>
+        <button
+          type="submit"
+          className="col-span-2 bg-primary-light py-3 transition hover:bg-primary-default"
+        >
+          Submit
+        </button>
       </form>
     </section>
   );

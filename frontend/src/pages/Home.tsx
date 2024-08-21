@@ -57,7 +57,7 @@ const Users = () => {
               {state.users?.map((user, index) => (
                 <tr
                   key={user._id}
-                  className="cursor-pointer transition duration-300 odd:bg-white even:bg-secondary hover:bg-primary-dark hover:text-white [&>td]:border [&>td]:border-slate-700 [&>td]:py-2.5"
+                  className="cursor-pointer transition duration-300 odd:bg-white even:bg-secondary hover:bg-primary-default hover:text-white [&>td]:border [&>td]:border-slate-700 [&>td]:py-2.5"
                   onClick={() => {
                     handleClickedUser(index);
                   }}
