@@ -5,12 +5,14 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const usersRoutes = require("./routes/users");
+const mailRoutes = require("./routes/mail");
 
 app.use(cors());
 
 app.use(express.json());
 
 app.use(usersRoutes);
+app.use(mailRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
