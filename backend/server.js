@@ -17,8 +17,8 @@ app.use(usersRoutes);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    app.listen(4000, () => {
-      console.log("Listening to port 4000");
+    app.listen(process.env.PORT, () => {
+      console.log(`Listening to port ${process.env.PORT}`);
     });
   })
   .catch((error) => console.log(error));
